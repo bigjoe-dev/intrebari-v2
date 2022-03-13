@@ -17,6 +17,7 @@ export default function buildMakeQuestion({ Id, md5 }) {
       getCreator: () => creator,
       getCreatedOn: () => createdOn,
       getHash: () => makeHash(creator, id, body),
+      getId: () => id,
       getModifiedOn: () => modifiedOn,
       getBody: () => body,
     });
