@@ -25,7 +25,7 @@ app.post(`/${apiRoot}/questions`, makeCallback(postQuestion));
 app.use(makeCallback(notFound));
 
 app.listen(3000, () => {
-
+  console.log('listening');
 });
 
 export default app;
