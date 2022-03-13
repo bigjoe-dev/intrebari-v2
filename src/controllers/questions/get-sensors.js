@@ -12,7 +12,6 @@ export default function makeGetQuestions({ listQuestions }) {
       };
     } catch (e) {
       // TODO: Error logging
-      console.log(e);
       return {
         headers,
         statusCode: 400,
