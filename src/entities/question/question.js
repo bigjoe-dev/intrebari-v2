@@ -1,6 +1,6 @@
 export default function buildMakeQuestion({ Id, md5 }) {
-  function makeHash(creator, id, body) {
-    return md5(creator + id + body);
+  function makeHash(creator, id, body, answered) {
+    return md5(creator + id + body + answered);
   }
   return function makeQuestion({
     creator,
@@ -17,7 +17,7 @@ export default function buildMakeQuestion({ Id, md5 }) {
     return Object.freeze({
       getCreator: () => creator,
       getCreatedOn: () => createdOn,
-      getHash: () => makeHash(creator, id, body),
+      getHash: () => makeHash(creator, id, body, answered),
       getId: () => id,
       getModifiedOn: () => modifiedOn,
       getAnswered: () => answered,

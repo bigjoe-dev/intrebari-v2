@@ -11,7 +11,7 @@ export default function makeEditQuestion({ questionsDb }) {
     const existing = await questionsDb.findById({ id });
 
     if (!existing) {
-      throw new RangeError('Question not foudn');
+      throw new RangeError('Question not found');
     }
 
     const question = makeQuestion({ ...existing, ...changes, modifiedOn: null });

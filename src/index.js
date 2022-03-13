@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import {
   getQuestions,
   postQuestion,
+  patchQuestion,
   getRandomQuestion,
   notFound,
 } from './controllers/questions';
@@ -24,6 +25,8 @@ app.use((_, res, next) => {
 app.get(`/${apiRoot}/questions`, makeCallback(getQuestions));
 app.get(`/${apiRoot}/questions/random`, makeCallback(getRandomQuestion));
 app.post(`/${apiRoot}/questions`, makeCallback(postQuestion));
+app.patch(`/${apiRoot}/questions/:id`, makeCallback(patchQuestion));
+app.patch(`/${apiRoot}/questions`, makeCallback(patchQuestion));
 app.use(makeCallback(notFound));
 
 app.listen(3000, () => {

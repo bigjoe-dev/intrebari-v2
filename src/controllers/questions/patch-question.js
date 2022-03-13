@@ -23,7 +23,6 @@ export default function makePatchQuestion({ editQuestion }) {
       };
     } catch (e) {
       // TODO: Error logging
-      console.log(e);
       if (e.name === 'RangeError') {
         return {
           headers: {
