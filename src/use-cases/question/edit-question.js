@@ -14,7 +14,7 @@ export default function makeEditQuestion({ questionsDb }) {
       throw new RangeError('Question not found');
     }
 
-    const question = makeQuestion({ ...existing, ...changes, modifiedOn: null });
+    const question = makeQuestion({ ...existing, ...changes, modifiedOn: Date.now() });
     if (question.getHash() === existing.hash) {
       return existing;
     }
