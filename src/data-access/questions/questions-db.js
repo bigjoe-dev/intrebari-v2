@@ -3,7 +3,7 @@ import Id from '../../entities/Id';
 export default function makeQuestionsDb({ makeDb }) {
   async function findAll({ answered = false } = {}) {
     const db = await makeDb();
-    const query = answered ? { answered: false } : {};
+    const query = answered ? { answered: true } : { answered: false };
     const result = await db.collection('questions').find(query);
     return (await result.toArray()).map(({ _id: id, ...found }) => ({
       id,

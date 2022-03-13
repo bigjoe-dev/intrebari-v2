@@ -4,7 +4,7 @@ export default function makeGetQuestions({ listQuestions }) {
       'Content-Type': 'application/json',
     };
     try {
-      const intrebari = await listQuestions({ owner: httpRequest.query.owner });
+      const intrebari = await listQuestions({ answered: httpRequest.query.answered });
       return {
         headers,
         statusCode: 200,

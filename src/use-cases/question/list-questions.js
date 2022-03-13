@@ -1,9 +1,10 @@
 export default function makeListQuestions({ questionsDb }) {
   return async function listQuestions({ answered } = {}) {
-    if (answered === null) {
-      throw new Error('You must supply answered or not.');
+    if (!answered) {
+      throw new Error('You must supply answered or not answered.');
     }
-    const questions = await questionsDb.findAll({ answered });
+    const ans = answered === 'yes';
+    const questions = await questionsDb.findAll({ answered: ans });
 
     return questions;
   };
