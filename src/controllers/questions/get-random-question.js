@@ -1,10 +1,10 @@
-export default function makeGetRandomQuestions({ randomQuestions }) {
-  return async function getRandomQuestions() {
+export default function makeGetRandomQuestion({ randomQuestion }) {
+  return async function getRandomQuestion() {
     const headers = {
       'Content-Type': 'application/json',
     };
     try {
-      const intrebare = await randomQuestions();
+      const intrebare = await randomQuestion();
       return {
         headers,
         statusCode: 200,
