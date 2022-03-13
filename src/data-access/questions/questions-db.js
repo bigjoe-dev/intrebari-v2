@@ -30,6 +30,17 @@ export default function makeQuestionsDb({ makeDb }) {
     return { id, ...insertedInfo };
   }
 
+  async function findById({ id: _id }) {
+    const db = await makeDb();
+    const result = await db.collection('questions').find({ _id });
+    const found = await result.toArray();
+    if (found.length === 0) {
+      return null;
+    }
+    const { _id: id, ...info } = found[0];
+    return { id, ...info };
+  }
+
   async function update({ id: _id, ...questionInfo }) {
     const db = await makeDb();
     const result = await db
@@ -41,6 +52,7 @@ export default function makeQuestionsDb({ makeDb }) {
   return Object.freeze({
     findAll,
     findByHash,
+    findById,
     insert,
     update,
   });
