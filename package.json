@@ -4,7 +4,14 @@
   "description": "Un joc simplu",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run clean && babel src -d dist",
+    "now-build": "npm run build",
+    "clean": "rimraf dist",
+    "db": "babel-node ./db/index.js",
+    "dev": "nodemon --exec babel-node ./src/index.js",
+    "start": "npm run clean && npm run build && npm run db && cd dist && node index.js",
+    "test": "jest src --watch",
+    "test:e2e": "jest ./__test__ --runInBand"
   },
   "repository": {
     "type": "git",
@@ -22,9 +29,15 @@
   },
   "homepage": "https://github.com/bigjoe-dev/intrebari-v2#readme",
   "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.5",
+    "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.11",
+    "babel-plugin-inline-dotenv": "^1.6.0",
     "eslint": "^8.11.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.4"
+    "eslint-plugin-import": "^2.25.4",
+    "rimraf": "^3.0.2"
   },
   "dependencies": {
     "cuid": "^2.1.8",
