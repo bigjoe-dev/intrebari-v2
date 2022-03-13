@@ -2,9 +2,11 @@ import {
   listQuestions,
   addQuestion,
   randomQuestion,
+  editQuestion,
 } from '../../use-cases/question';
 import makeGetQuestions from './get-questions';
 import makePostQuestion from './post-question';
+import makePatchQuestion from './patch-question';
 import makeGetRandomQuestion from './get-random-question';
 import notFound from './not-found';
 
@@ -16,6 +18,10 @@ const postQuestion = makePostQuestion({
   addQuestion,
 });
 
+const patchQuestion = makePatchQuestion({
+  editQuestion,
+});
+
 const getRandomQuestion = makeGetRandomQuestion({
   randomQuestion,
 });
@@ -23,10 +29,11 @@ const getRandomQuestion = makeGetRandomQuestion({
 const questionController = Object.freeze({
   getQuestions,
   postQuestion,
+  patchQuestion,
   getRandomQuestion,
 });
 
 export default questionController;
 export {
-  getQuestions, postQuestion, getRandomQuestion, notFound,
+  getQuestions, postQuestion, patchQuestion, getRandomQuestion, notFound,
 };
