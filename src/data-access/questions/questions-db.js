@@ -19,8 +19,20 @@ export default function makeQuestionsDb({ makeDb }) {
     return { ...result };
   }
 
+  async function findByHash(question) {
+    const db = await makeDb();
+    const result = await db.collection('questions').find({ hash: question.hash });
+    const found = await result.toArray();
+    if (found.length === 0) {
+      return null;
+    }
+    const { _id: id, ...insertedInfo } = found[0];
+    return { id, ...insertedInfo };
+  }
+
   return Object.freeze({
     findAll,
+    findByHash,
     insert,
   });
 }
