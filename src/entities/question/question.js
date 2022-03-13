@@ -7,6 +7,7 @@ export default function buildMakeQuestion({ Id, md5 }) {
     createdOn = Date.now(),
     modifiedOn = Date.now(),
     id = Id.makeId(),
+    answered = false,
     body,
   } = {}) {
     if (!Id.isValidId(id)) {
@@ -19,6 +20,7 @@ export default function buildMakeQuestion({ Id, md5 }) {
       getHash: () => makeHash(creator, id, body),
       getId: () => id,
       getModifiedOn: () => modifiedOn,
+      getAnswered: () => answered,
       getBody: () => body,
     });
   };
