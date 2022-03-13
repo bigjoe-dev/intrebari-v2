@@ -12,6 +12,7 @@ import makeCallback from './express-callback';
 
 dotenv.config();
 
+const port = process.env.PORT || 3000;
 const apiRoot = process.env.API_ROOT;
 const app = express();
 app.use(express.json());
@@ -29,7 +30,7 @@ app.patch(`/${apiRoot}/questions/:id`, makeCallback(patchQuestion));
 app.patch(`/${apiRoot}/questions`, makeCallback(patchQuestion));
 app.use(makeCallback(notFound));
 
-app.listen(3000, () => {
+app.listen(port, () => {
 });
 
 export default app;
