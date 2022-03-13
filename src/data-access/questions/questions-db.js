@@ -30,9 +30,18 @@ export default function makeQuestionsDb({ makeDb }) {
     return { id, ...insertedInfo };
   }
 
+  async function update({ id: _id, ...questionInfo }) {
+    const db = await makeDb();
+    const result = await db
+      .collection('questions')
+      .updateOne({ _id }, { $set: { ...questionInfo } });
+    return result.modifiedCount > 0 ? { id: _id, ...questionInfo } : null;
+  }
+
   return Object.freeze({
     findAll,
     findByHash,
     insert,
+    update,
   });
 }
